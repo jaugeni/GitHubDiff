@@ -42,7 +42,7 @@
 		A35145B625DD75B5004974F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A35145B825DD75B8004974F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A35145BB25DD75B8004974F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A35145BD25DD75B8004974F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A35145BD25DD75B8004974F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = GitHubDiff/Config/Info.plist; sourceTree = SOURCE_ROOT; };
 		A35145C225DD75B8004974F9 /* GitHubDiffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubDiffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35145C625DD75B8004974F9 /* GitHubDiffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubDiffTests.swift; sourceTree = "<group>"; };
 		A35145C825DD75B8004974F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,13 +99,11 @@
 		A35145AE25DD75B5004974F9 /* GitHubDiff */ = {
 			isa = PBXGroup;
 			children = (
-				A35145AF25DD75B5004974F9 /* AppDelegate.swift */,
-				A35145B125DD75B5004974F9 /* SceneDelegate.swift */,
-				A35145B325DD75B5004974F9 /* ViewController.swift */,
-				A35145B525DD75B5004974F9 /* Main.storyboard */,
-				A35145B825DD75B8004974F9 /* Assets.xcassets */,
-				A35145BA25DD75B8004974F9 /* LaunchScreen.storyboard */,
-				A35145BD25DD75B8004974F9 /* Info.plist */,
+				A35145E425DD932D004974F9 /* Config */,
+				A35145E625DD9376004974F9 /* Delegates */,
+				A35145E325DD9309004974F9 /* Resources */,
+				A35145E225DD92CA004974F9 /* Storyboards */,
+				A35145E525DD933E004974F9 /* ViewControllers */,
 			);
 			path = GitHubDiff;
 			sourceTree = "<group>";
@@ -126,6 +124,48 @@
 				A35145D325DD75B8004974F9 /* Info.plist */,
 			);
 			path = GitHubDiffUITests;
+			sourceTree = "<group>";
+		};
+		A35145E225DD92CA004974F9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A35145B525DD75B5004974F9 /* Main.storyboard */,
+				A35145BA25DD75B8004974F9 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A35145E325DD9309004974F9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A35145B825DD75B8004974F9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A35145E425DD932D004974F9 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A35145BD25DD75B8004974F9 /* Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		A35145E525DD933E004974F9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A35145B325DD75B5004974F9 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A35145E625DD9376004974F9 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				A35145AF25DD75B5004974F9 /* AppDelegate.swift */,
+				A35145B125DD75B5004974F9 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,7 +478,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2GURVV2B3;
-				INFOPLIST_FILE = GitHubDiff/Info.plist;
+				INFOPLIST_FILE = GitHubDiff/Config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,7 +497,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2GURVV2B3;
-				INFOPLIST_FILE = GitHubDiff/Info.plist;
+				INFOPLIST_FILE = GitHubDiff/Config/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
