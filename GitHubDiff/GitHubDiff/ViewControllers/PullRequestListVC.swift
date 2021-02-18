@@ -17,13 +17,14 @@ class PullRequestListVC: UIViewController {
     
     private var dataSource: UITableViewDiffableDataSource<Section, PullRequestModel>?
     
-    private let prViewModel = PullRequestListViewModel()
+    private var prViewModel: PullRequestListViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "MagicalRecord"
         setUpDataSource()
-        createSnapshot(from: prViewModel.prList)
+        prViewModel = PullRequestListViewModel()
+        prViewModel?.delegate = self
     }
     
     private func setUpDataSource() {
@@ -41,4 +42,22 @@ class PullRequestListVC: UIViewController {
         dataSource?.apply(snapshot,animatingDifferences: true)
     }
 
+}
+
+extension PullRequestListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension PullRequestListVC: PullRequestListProtocol {
+    func updateData(with prList: [PullRequestModel]) {
+        createSnapshot(from: prList)
+    }
+    
+    func showError(with message: String) {
+        presentAlert(title: "Error!", message: message, buttonTitle: "Retry.") { [weak self] in
+            self?.prViewModel?.getPRLists()
+        }
+    }
 }

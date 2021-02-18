@@ -18,6 +18,9 @@
 		A351460125DDB7EB004974F9 /* PullRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A351460025DDB7EB004974F9 /* PullRequestModel.swift */; };
 		A351460A25DDBF93004974F9 /* PullRequestListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A351460925DDBF93004974F9 /* PullRequestListViewModel.swift */; };
 		A351461325DDC349004974F9 /* PullRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A351461225DDC349004974F9 /* PullRequestTableViewCell.swift */; };
+		A351462E25DDE102004974F9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A351462D25DDE102004974F9 /* NetworkManager.swift */; };
+		A351463425DDE2DA004974F9 /* GitErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A351463325DDE2DA004974F9 /* GitErrors.swift */; };
+		A351464925DE21CC004974F9 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A351464825DE21CC004974F9 /* UIViewController+Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		A351460025DDB7EB004974F9 /* PullRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestModel.swift; sourceTree = "<group>"; };
 		A351460925DDBF93004974F9 /* PullRequestListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestListViewModel.swift; sourceTree = "<group>"; };
 		A351461225DDC349004974F9 /* PullRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestTableViewCell.swift; sourceTree = "<group>"; };
+		A351462D25DDE102004974F9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A351463325DDE2DA004974F9 /* GitErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitErrors.swift; sourceTree = "<group>"; };
+		A351464825DE21CC004974F9 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,14 +111,17 @@
 		A35145AE25DD75B5004974F9 /* GitHubDiff */ = {
 			isa = PBXGroup;
 			children = (
-				A351461125DDC314004974F9 /* Views */,
 				A35145E425DD932D004974F9 /* Config */,
 				A35145E625DD9376004974F9 /* Delegates */,
+				A351464725DE2195004974F9 /* Extensions */,
+				A351462C25DDE0EA004974F9 /* Managers */,
 				A35145FF25DDB770004974F9 /* Models */,
 				A35145E325DD9309004974F9 /* Resources */,
 				A35145E225DD92CA004974F9 /* Storyboards */,
+				A351463225DDE2B1004974F9 /* Utilities */,
 				A35145E525DD933E004974F9 /* ViewControllers */,
 				A351460825DDBF66004974F9 /* ViewModels */,
+				A351461125DDC314004974F9 /* Views */,
 			);
 			path = GitHubDiff;
 			sourceTree = "<group>";
@@ -199,6 +208,30 @@
 				A351461225DDC349004974F9 /* PullRequestTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A351462C25DDE0EA004974F9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A351462D25DDE102004974F9 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A351463225DDE2B1004974F9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A351463325DDE2DA004974F9 /* GitErrors.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A351464725DE2195004974F9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A351464825DE21CC004974F9 /* UIViewController+Alert.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,12 +364,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A351464925DE21CC004974F9 /* UIViewController+Alert.swift in Sources */,
 				A351460125DDB7EB004974F9 /* PullRequestModel.swift in Sources */,
 				A351460A25DDBF93004974F9 /* PullRequestListViewModel.swift in Sources */,
 				A351461325DDC349004974F9 /* PullRequestTableViewCell.swift in Sources */,
 				A35145B425DD75B5004974F9 /* PullRequestListVC.swift in Sources */,
 				A35145B025DD75B5004974F9 /* AppDelegate.swift in Sources */,
+				A351463425DDE2DA004974F9 /* GitErrors.swift in Sources */,
 				A35145B225DD75B5004974F9 /* SceneDelegate.swift in Sources */,
+				A351462E25DDE102004974F9 /* NetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

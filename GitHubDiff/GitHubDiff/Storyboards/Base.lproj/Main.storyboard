@@ -20,24 +20,24 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PullRequestTableViewCell" rowHeight="95" id="i20-95-Y5P" customClass="PullRequestTableViewCell" customModule="GitHubDiff" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PullRequestTableViewCell" rowHeight="95" id="i20-95-Y5P" customClass="PullRequestTableViewCell" customModule="GitHubDiff" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i20-95-Y5P" id="ZwP-KX-aBt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="DjJ-U3-0Sh">
-                                                    <rect key="frame" x="8" y="8" width="398" height="79"/>
+                                                    <rect key="frame" x="8" y="8" width="367" height="79"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsG-LO-qpa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="398" height="39.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="367" height="39.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGs-NG-oW6">
-                                                            <rect key="frame" x="0.0" y="39.5" width="398" height="39.5"/>
+                                                            <rect key="frame" x="0.0" y="39.5" width="367" height="39.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" systemColor="systemGray2Color"/>
                                                             <nil key="highlightedColor"/>

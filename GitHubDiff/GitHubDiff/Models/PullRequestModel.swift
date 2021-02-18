@@ -8,13 +8,7 @@
 import Foundation
 
 struct PullRequestModel: Codable, Hashable {
-    let title: String
-    let diffUrl: String
-    let state: String
-    
-    enum CodingKeys: String, CodingKey {
-        case title
-        case diffUrl = "diff_url"
-        case state
-    }
+    let title: String?
+    let diffUrl: String?
+    let state: String?
 }
