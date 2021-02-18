@@ -14,7 +14,7 @@ class PullRequestTableViewCell: UITableViewCell {
     
     func set(prModel: PullRequestModel) {
         title?.text = prModel.title
-        state?.text = "State: \(prModel.state ?? "N/A")"
+        state?.text = "Pull Requests #\(prModel.number)"
     }
 
 }

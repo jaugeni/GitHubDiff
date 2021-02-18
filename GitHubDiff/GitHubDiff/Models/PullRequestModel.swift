@@ -8,7 +8,8 @@
 import Foundation
 
 struct PullRequestModel: Codable, Hashable {
-    let title: String?
-    let diffUrl: String?
-    let state: String?
+    let title: String
+    let diffUrl: String
+    let state: String
+    let number: Int
 }

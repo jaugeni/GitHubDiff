@@ -76,6 +76,7 @@
                     <navigationItem key="navigationItem" id="bhq-Ar-SS3"/>
                     <connections>
                         <outlet property="prTableView" destination="Mdy-k6-SGN" id="DiT-Cy-x6d"/>
+                        <segue destination="Ns6-bq-WpI" kind="show" identifier="toDiffViewController" id="f55-ae-ehd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -99,6 +100,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMF-fX-x3K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-39.130434782608695" y="-23.4375"/>
+        </scene>
+        <!--Diff View Controller-->
+        <scene sceneID="iyC-Kv-YVf">
+            <objects>
+                <viewController id="Ns6-bq-WpI" customClass="DiffViewController" customModule="GitHubDiff" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pKn-vl-0Bc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="qyL-q9-dnk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4lB-EW-E2U"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uYF-PJ-xle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1784" y="-23"/>
         </scene>
     </scenes>
     <resources>
