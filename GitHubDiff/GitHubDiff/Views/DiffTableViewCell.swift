@@ -8,47 +8,89 @@
 import UIKit
 
 class DiffTableViewCell: UITableViewCell {
+    
+    enum Constant {
+        static let darkGray = UIColor.systemGray.withAlphaComponent(0.5)
+        static let blue = UIColor.systemBlue.withAlphaComponent(0.1)
+        static let darkRed = UIColor.systemRed.withAlphaComponent(0.3)
+        static let lightRed = UIColor.systemRed.withAlphaComponent(0.1)
+        static let darkGreen = UIColor.systemGreen.withAlphaComponent(0.3)
+        static let lightGreen =  UIColor.systemGreen.withAlphaComponent(0.1)
+        static let white = UIColor.systemGray.withAlphaComponent(0.1)
+    }
 
     @IBOutlet weak var leftLabel: DiffLabel!
+    @IBOutlet weak var leftCountLabel: DiffLabel!
     @IBOutlet weak var rightLabel: DiffLabel!
-
-
+    @IBOutlet weak var rightCountLabel: DiffLabel!
+    @IBOutlet weak var rightStackView: UIStackView!
+    
     func set(with diff: DiffModel) {
+        
         switch diff.lineType {
         case .fileName:
-            leftLabel.text = diff.leftLine
-            rightLabel.isHidden = true
-            backgroundColor = UIColor.systemGray.withAlphaComponent(0.5)
-            leftLabel.backgroundColor = UIColor.clear
+            leftLabel.text = diff.header
+            label(isHidden: true)
+            backgroundColor = Constant.darkGray
+            leftLabel.backgroundColor = .clear
         case .position:
-            leftLabel.text = diff.leftLine
-            rightLabel.isHidden = true
-            backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
-            leftLabel.backgroundColor = UIColor.clear
-        case .left:
-            leftLabel.text = diff.leftLine
-            leftLabel.backgroundColor = UIColor.systemRed.withAlphaComponent(0.1)
-            backgroundColor = UIColor.systemGray6.withAlphaComponent(0.1)
-            rightLabel.backgroundColor = UIColor.clear
-        case .right:
-            rightLabel.text = diff.rightLine
-            rightLabel.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1)
-            backgroundColor = UIColor.systemGray.withAlphaComponent(0.1)
-            leftLabel.backgroundColor = UIColor.clear
-
+            leftLabel.text = diff.header
+            label(isHidden: true)
+            backgroundColor = Constant.blue
+            leftLabel.backgroundColor = .clear
+        case .left, .right:
+            handleLeftRight(with: diff)
         case .notChanged:
-            rightLabel.text = diff.leftLine
-            leftLabel.text = diff.rightLine
+            rightLabel.text = diff.rightLine
+            rightCountLabel.text = diff.rightCount
+            leftLabel.text = diff.leftLine
+            leftCountLabel.text = diff.leftCount
+        }
+    }
+    
+    private func handleLeftRight(with diff: DiffModel) {
+        if let left = diff.leftLine, let leftCount = diff.leftCount {
+            leftLabel.text = left
+            leftLabel.backgroundColor = Constant.lightRed
+            leftCountLabel.text = leftCount
+            leftCountLabel.backgroundColor = Constant.darkRed
+        }
+        if let right = diff.rightLine, let rightCount = diff.rightCount {
+            rightLabel.text = right
+            rightLabel.backgroundColor = Constant.lightGreen
+            rightCountLabel.text = rightCount
+            rightCountLabel.backgroundColor = Constant.darkGreen
+        }
+        
+        if diff.leftLine == nil {
+            leftLabel.backgroundColor = .clear
+            leftCountLabel.backgroundColor = .clear
+            backgroundColor = Constant.white
+        }
+        
+        if diff.rightLine == nil {
+            rightLabel.backgroundColor = .clear
+            rightCountLabel.backgroundColor = .clear
+            backgroundColor = Constant.white
         }
     }
     
     override func prepareForReuse() {
-        rightLabel.isHidden = false
-        rightLabel.backgroundColor = UIColor.white
-        leftLabel.backgroundColor = UIColor.white
+        
+        label(isHidden: false)
+        rightLabel.backgroundColor = .white
+        leftLabel.backgroundColor = .white
+        rightCountLabel.backgroundColor = .white
+        leftCountLabel.backgroundColor = .white
         backgroundColor = UIColor.white
         leftLabel.text = ""
-        rightLabel.text = ""
-        rightLabel.removeLeftBorder()
+        leftCountLabel.text = ""
+        leftLabel.text = ""
+        rightCountLabel.text = ""
+    }
+    
+    private func label(isHidden: Bool) {
+        leftCountLabel.isHidden = isHidden
+        rightStackView.isHidden = isHidden
     }
 }

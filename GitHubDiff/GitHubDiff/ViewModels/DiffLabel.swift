@@ -24,11 +24,4 @@ class DiffLabel: UILabel {
         return CGSize(width: size.width + leftInset + rightInset,
                       height: size.height + topInset + bottomInset)
     }
-    
-//    override var bounds: CGRect {
-//        didSet {
-//            // ensures this works within stack views if multi-line
-//            preferredMaxLayoutWidth = bounds.width - (leftInset + rightInset)
-//        }
-//    }
 }

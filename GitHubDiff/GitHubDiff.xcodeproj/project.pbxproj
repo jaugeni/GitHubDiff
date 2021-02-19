@@ -26,7 +26,8 @@
 		A3684D2725DF49A100B1B979 /* UIViewController+DeviceRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D2625DF49A100B1B979 /* UIViewController+DeviceRotation.swift */; };
 		A3684D2C25DF575E00B1B979 /* DiffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D2B25DF575E00B1B979 /* DiffTableViewCell.swift */; };
 		A3684D3125DF5D3500B1B979 /* DiffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D3025DF5D3500B1B979 /* DiffModel.swift */; };
-		A3684D4725DF8A9A00B1B979 /* DiffLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D4625DF8A9A00B1B979 /* DiffLabel.swift */; };
+		A3684D6525E0188100B1B979 /* DiffLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D6425E0188100B1B979 /* DiffLinkedList.swift */; };
+		A3684D7025E06F4A00B1B979 /* DiffLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D6F25E06F4A00B1B979 /* DiffLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +73,8 @@
 		A3684D2625DF49A100B1B979 /* UIViewController+DeviceRotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DeviceRotation.swift"; sourceTree = "<group>"; };
 		A3684D2B25DF575E00B1B979 /* DiffTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffTableViewCell.swift; sourceTree = "<group>"; };
 		A3684D3025DF5D3500B1B979 /* DiffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffModel.swift; sourceTree = "<group>"; };
-		A3684D4625DF8A9A00B1B979 /* DiffLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffLabel.swift; sourceTree = "<group>"; };
+		A3684D6425E0188100B1B979 /* DiffLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffLinkedList.swift; sourceTree = "<group>"; };
+		A3684D6F25E06F4A00B1B979 /* DiffLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 			children = (
 				A351460025DDB7EB004974F9 /* PullRequestModel.swift */,
 				A3684D3025DF5D3500B1B979 /* DiffModel.swift */,
+				A3684D6425E0188100B1B979 /* DiffLinkedList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 		A351460825DDBF66004974F9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A3684D6F25E06F4A00B1B979 /* DiffLabel.swift */,
 				A351460925DDBF93004974F9 /* PullRequestListViewModel.swift */,
 				A3684D2125DF40FE00B1B979 /* DiffViewModel.swift */,
 			);
@@ -222,7 +226,6 @@
 			children = (
 				A351461225DDC349004974F9 /* PullRequestTableViewCell.swift */,
 				A3684D2B25DF575E00B1B979 /* DiffTableViewCell.swift */,
-				A3684D4625DF8A9A00B1B979 /* DiffLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -384,8 +387,10 @@
 			files = (
 				A351464925DE21CC004974F9 /* UIViewController+Alert.swift in Sources */,
 				A351465D25DE30C0004974F9 /* DiffViewController.swift in Sources */,
+				A3684D6525E0188100B1B979 /* DiffLinkedList.swift in Sources */,
 				A351460125DDB7EB004974F9 /* PullRequestModel.swift in Sources */,
 				A351460A25DDBF93004974F9 /* PullRequestListViewModel.swift in Sources */,
+				A3684D7025E06F4A00B1B979 /* DiffLabel.swift in Sources */,
 				A351461325DDC349004974F9 /* PullRequestTableViewCell.swift in Sources */,
 				A35145B425DD75B5004974F9 /* PullRequestListVC.swift in Sources */,
 				A35145B025DD75B5004974F9 /* AppDelegate.swift in Sources */,
@@ -393,7 +398,6 @@
 				A351463425DDE2DA004974F9 /* GitErrors.swift in Sources */,
 				A3684D2725DF49A100B1B979 /* UIViewController+DeviceRotation.swift in Sources */,
 				A3684D2225DF40FE00B1B979 /* DiffViewModel.swift in Sources */,
-				A3684D4725DF8A9A00B1B979 /* DiffLabel.swift in Sources */,
 				A35145B225DD75B5004974F9 /* SceneDelegate.swift in Sources */,
 				A3684D3125DF5D3500B1B979 /* DiffModel.swift in Sources */,
 				A351462E25DDE102004974F9 /* NetworkManager.swift in Sources */,

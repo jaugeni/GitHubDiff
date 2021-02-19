@@ -16,8 +16,11 @@ enum DiffLineType {
 }
 
 struct DiffModel: Hashable {
-    let id = UUID()
-    let leftLine: String
-    let rightLine: String
+    var id = UUID()
+    var leftLine: String?
+    var leftCount: String?
+    var rightLine: String?
+    var rightCount: String?
+    let header: String?
     let lineType: DiffLineType
 }

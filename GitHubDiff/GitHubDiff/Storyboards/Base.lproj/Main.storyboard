@@ -121,24 +121,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="808" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7nz-St-7jD">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7nz-St-7jD">
                                                     <rect key="frame" x="0.0" y="0.0" width="808" height="44"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rll-xY-70N" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22" width="404" height="0.0"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="topinsert">
-                                                                    <integer key="value" value="20"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkK-ON-Few" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
-                                                            <rect key="frame" x="404" y="22" width="404" height="0.0"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bav-3F-R7K">
+                                                            <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CrZ-2t-0XD" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="44"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="45" id="amD-hf-NL2"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rll-xY-70N" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
+                                                                    <rect key="frame" x="45" y="0.0" width="359" height="44"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Orp-9V-fPg">
+                                                            <rect key="frame" x="404" y="0.0" width="404" height="44"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zk3-QY-Bfn" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="44"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="45" id="ghU-a2-w3H"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkK-ON-Few" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
+                                                                    <rect key="frame" x="45" y="0.0" width="359" height="44"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -150,8 +175,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="leftCountLabel" destination="CrZ-2t-0XD" id="4GE-55-xXj"/>
                                             <outlet property="leftLabel" destination="Rll-xY-70N" id="1Sf-xz-yBj"/>
+                                            <outlet property="rightCountLabel" destination="zk3-QY-Bfn" id="3QV-ck-ApD"/>
                                             <outlet property="rightLabel" destination="CkK-ON-Few" id="E26-bg-TfT"/>
+                                            <outlet property="rightStackView" destination="Orp-9V-fPg" id="6Mj-bo-yWC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

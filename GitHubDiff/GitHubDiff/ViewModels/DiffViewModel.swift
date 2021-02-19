@@ -27,17 +27,22 @@ class DiffViewModel {
         network?.getData(completed: { [weak self] result in
             switch result {
             case .success(let diff):
-                guard let self = self else { return }
                 let str = String(decoding: diff, as: UTF8.self)
-                self.delegate?.update(with: self.getModel(from: str))
+                self?.getModel(from: str)
             case .failure(let error):
                 self?.delegate?.showError(with: error.rawValue)
             }
         })
     }
     
-    private func getModel(from stringData: String) -> [DiffModel] {
-        var diffModels = [DiffModel]()
+    deinit {
+        print("DiffViewModel deinit")
+    }
+    
+    private func getModel(from stringData: String) {
+        
+        let linkedDiff = LinkedList()
+        var counts = (0, 0)
 
         let lines = stringData.components(separatedBy: "\n")
         for line in lines {
@@ -47,34 +52,91 @@ class DiffViewModel {
             }
             
             if line.contains("@@") {
-                let diffModel = DiffModel(leftLine: line, rightLine: "", lineType: .position)
-                diffModels.append(diffModel)
+                counts = handleCount(with: line)
+                
+                let doffNode = DiffNode(headerLine: line, leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .position)
+                linkedDiff.append(node: doffNode)
             }
             
             if line.contains("diff --git") {
-                let removeDiff = line.replacingOccurrences(of: "diff --git", with: "")
-                let removeA = removeDiff.replacingOccurrences(of: "a/", with: "")
-                let replaceB = removeA.replacingOccurrences(of: "b/", with: "-> ")
-                let diffModel = DiffModel(leftLine: replaceB, rightLine: "", lineType: .fileName)
-                diffModels.append(diffModel)
+                let doffNode = DiffNode(headerLine: modifydiffGit(with: line), leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .fileName)
+                linkedDiff.append(node: doffNode)
             }
             
             if line.prefix(1) == "+" {
-                let diffModel = DiffModel(leftLine: "", rightLine: line, lineType: .right)
-                diffModels.append(diffModel)
+                if let emptyRight = linkedDiff.previusEmptyRight() {
+                    emptyRight.rightCount = String(counts.1)
+                    emptyRight.rightLine = line
+                } else {
+                    let doffNode = DiffNode(headerLine: nil, leftLine: nil, leftCount: nil, rightLine: line, rightCount: " \(counts.1) ", lineType: .right)
+                    linkedDiff.append(node: doffNode)
+                }
+                counts.1 += 1
             }
             
             if line.prefix(1) == "-" {
-                let diffModel = DiffModel(leftLine: line, rightLine: "", lineType: .left)
-                diffModels.append(diffModel)
+                if let emptyLeft = linkedDiff.previusEmptyLeft() {
+                    emptyLeft.leftCount = String(counts.0)
+                    emptyLeft.leftLine = line
+                } else {
+                    let doffNode = DiffNode(headerLine: nil, leftLine: line, leftCount: " \(counts.0) ", rightLine: nil, rightCount: nil, lineType: .left)
+                    linkedDiff.append(node: doffNode)
+                }
+                counts.0 += 1
             }
             
             if line.prefix(1) == " " {
-                let diffModel = DiffModel(leftLine: line, rightLine: line, lineType: .notChanged)
-                diffModels.append(diffModel)
+                let doffNode = DiffNode(headerLine: nil, leftLine: line, leftCount: " \(counts.0) ", rightLine: line, rightCount: " \(counts.1) ", lineType: .notChanged)
+                linkedDiff.append(node: doffNode)
+                counts.0 += 1
+                counts.1 += 1
             }
         }
         
-        return diffModels
+        var diffModels = [DiffModel]()
+        
+        var node = linkedDiff.first
+        while node != nil {
+            let diffModel = DiffModel(leftLine: node?.leftLine, leftCount: node?.leftCount, rightLine: node?.rightLine, rightCount: node?.rightCount, header: node?.headerLine, lineType: node?.lineType ?? .fileName)
+                
+            diffModels.append(diffModel)
+            node = node?.next
+        }
+        
+        self.delegate?.update(with: diffModels)
+    }
+    
+    private func modifydiffGit(with line: String) -> String {
+        let removeDiff = line.replacingOccurrences(of: "diff --git ", with: "")
+        let removeA = removeDiff.replacingOccurrences(of: "a/", with: "")
+        let replaceB = removeA.replacingOccurrences(of: "b/", with: "-> ")
+        let compareLines = replaceB.components(separatedBy: " -> ")
+        
+        if compareLines[0] == compareLines[1] {
+            return compareLines[0]
+        }
+        
+        return replaceB
+    }
+    
+    private func handleCount(with line: String) -> (left: Int, right: Int) {
+        var counts = (0, 0)
+        
+        let lineArray = line.components(separatedBy: " ")
+        
+        let leftNumberString = lineArray[1].components(separatedBy: ",")
+        let rightNumberString = lineArray[2].components(separatedBy: ",")
+        let removeMinus = leftNumberString[0].replacingOccurrences(of: "-", with: "")
+        let removePlus = rightNumberString[0].replacingOccurrences(of: "+", with: "")
+        
+        if let leftStart = Int(removeMinus) {
+            counts.0 =  leftStart
+        }
+        
+        if let rightStart = Int(removePlus) {
+            counts.1 = rightStart
+        }
+        
+        return counts
     }
 }
