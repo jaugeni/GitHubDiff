@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZKR-F5-tLo">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,31 +13,31 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PullRequestListVC" customModule="GitHubDiff" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mdy-k6-SGN">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="44" y="44" width="808" height="349"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PullRequestTableViewCell" rowHeight="95" id="i20-95-Y5P" customClass="PullRequestTableViewCell" customModule="GitHubDiff" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                        <rect key="frame" x="0.0" y="28" width="808" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i20-95-Y5P" id="ZwP-KX-aBt">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="777" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="DjJ-U3-0Sh">
-                                                    <rect key="frame" x="8" y="8" width="367" height="79"/>
+                                                    <rect key="frame" x="8" y="8" width="761" height="79"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsG-LO-qpa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="367" height="39.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="761" height="39.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGs-NG-oW6">
-                                                            <rect key="frame" x="0.0" y="39.5" width="367" height="39.5"/>
+                                                            <rect key="frame" x="0.0" y="39.5" width="761" height="39.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" systemColor="systemGray2Color"/>
                                                             <nil key="highlightedColor"/>
@@ -89,7 +89,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZKR-F5-tLo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OuW-ed-ReY">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -106,12 +106,30 @@
             <objects>
                 <viewController id="Ns6-bq-WpI" customClass="DiffViewController" customModule="GitHubDiff" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pKn-vl-0Bc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g47-dn-aD4">
+                                <rect key="frame" x="44" y="44" width="808" height="349"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qyL-q9-dnk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qyL-q9-dnk" firstAttribute="bottom" secondItem="g47-dn-aD4" secondAttribute="bottom" id="4Iv-Hx-WO3"/>
+                            <constraint firstItem="qyL-q9-dnk" firstAttribute="trailing" secondItem="g47-dn-aD4" secondAttribute="trailing" id="Hd1-h2-7C7"/>
+                            <constraint firstItem="g47-dn-aD4" firstAttribute="leading" secondItem="qyL-q9-dnk" secondAttribute="leading" id="Syg-ly-NvU"/>
+                            <constraint firstItem="g47-dn-aD4" firstAttribute="top" secondItem="qyL-q9-dnk" secondAttribute="top" id="VlB-8P-d8W"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4lB-EW-E2U"/>
+                    <connections>
+                        <outlet property="diffTextView" destination="g47-dn-aD4" id="ohJ-qh-NNk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYF-PJ-xle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -119,6 +137,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,15 +9,15 @@ import Foundation
 
 class NetworkManager {
     
-    private var url: String
+    private var url: String?
     
-    init(url: String) {
+    init(url: String?) {
         self.url = url
     }
     
     func get<T: Decodable>(result: T.Type, completed: @escaping (Result<T, GitErrors>) -> Void) {
         
-        guard let url = URL(string: url) else {
+        guard let urlString = url, let url = URL(string: urlString) else {
             completed(.failure(.invalidUrl))
             return
         }
@@ -48,6 +48,36 @@ class NetworkManager {
             } catch {
                 completed(.failure(.failtoDecodeData))
             }
+        }
+        
+        task.resume()
+    }
+    
+    func getData(completed: @escaping (Result<Data, GitErrors>) -> Void) {
+        
+        guard let urlString = url, let url = URL(string: urlString) else {
+            completed(.failure(.invalidUrl))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let error = error {
+                completed(.failure(.serverError))
+                print("Debug ERROR: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.ivalidData))
+                return
+            }
+            completed(.success(data))
         }
         
         task.resume()

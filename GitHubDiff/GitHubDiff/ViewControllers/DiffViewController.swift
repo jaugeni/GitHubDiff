@@ -9,31 +9,24 @@ import UIKit
 
 class DiffViewController: UIViewController {
 
+    @IBOutlet weak var diffTextView: UITextView!
+    
     var prModel: PullRequestModel?
+    
+    private var diffViewModel: DiffViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         rotateToLandsScapeDevice()
         updateTitle()
+        diffViewModel = DiffViewModel(prModel)
+        diffViewModel?.delegate = self
+        navigationController?.hidesBarsOnSwipe = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.rotateToPotraitScapeDevice()
-    }
-
-    func rotateToLandsScapeDevice(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.currentOrientation = .landscape
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-        UIView.setAnimationsEnabled(true)
-    }
-
-    func rotateToPotraitScapeDevice(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.currentOrientation = .allButUpsideDown
-        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        UIView.setAnimationsEnabled(true)
+        self.rotateToAll()
     }
     
     private func updateTitle() {
@@ -43,5 +36,19 @@ class DiffViewController: UIViewController {
             title = "Pull Requst"
         }
     }
+}
 
+extension DiffViewController: DiffViewModelProtocol {
+    
+    func update(with diff: String) {
+        DispatchQueue.main.async {
+            self.diffTextView.text = diff
+        }
+    }
+    
+    func showError(with message: String) {
+        presentAlert(title: "Error!", message: message, buttonTitle: "Retry.") { [weak self] in
+            self?.diffViewModel?.getDiff()
+        }
+    }
 }

@@ -35,6 +35,11 @@ class PullRequestListVC: UIViewController {
         prTableView.refreshControl?.beginRefreshing()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnSwipe = false
+    }
+    
     @objc private func handleRefreshe() {
         prViewModel?.getPRLists()
     }
@@ -74,7 +79,7 @@ extension PullRequestListVC: UITableViewDelegate {
 }
 
 extension PullRequestListVC: PullRequestListProtocol {
-    func updateData(with prList: [PullRequestModel]) {
+    func update(with prList: [PullRequestModel]) {
         createSnapshot(from: prList)
         DispatchQueue.main.async {
             self.prTableView.refreshControl?.endRefreshing()

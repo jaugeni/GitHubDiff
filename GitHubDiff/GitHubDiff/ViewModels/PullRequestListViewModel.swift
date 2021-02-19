@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PullRequestListProtocol: class {
-    func updateData(with prList: [PullRequestModel])
+    func update(with prList: [PullRequestModel])
     func showError(with message: String)
 }
 
@@ -25,7 +25,7 @@ class PullRequestListViewModel {
         networkManager.get(result: [PullRequestModel].self) { [weak self] result in
             switch result {
             case .success(let prList):
-                self?.delegate?.updateData(with: prList)
+                self?.delegate?.update(with: prList)
             case .failure(let error):
                 self?.delegate?.showError(with: error.rawValue)
             }
