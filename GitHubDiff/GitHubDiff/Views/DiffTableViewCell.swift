@@ -12,12 +12,13 @@ class DiffTableViewCell: UITableViewCell {
     @IBOutlet weak var leftLabel: DiffLabel!
     @IBOutlet weak var rightLabel: DiffLabel!
 
+
     func set(with diff: DiffModel) {
         switch diff.lineType {
         case .fileName:
             leftLabel.text = diff.leftLine
             rightLabel.isHidden = true
-            backgroundColor = UIColor.systemGray.withAlphaComponent(0.1)
+            backgroundColor = UIColor.systemGray.withAlphaComponent(0.5)
             leftLabel.backgroundColor = UIColor.clear
         case .position:
             leftLabel.text = diff.leftLine
@@ -27,9 +28,14 @@ class DiffTableViewCell: UITableViewCell {
         case .left:
             leftLabel.text = diff.leftLine
             leftLabel.backgroundColor = UIColor.systemRed.withAlphaComponent(0.1)
+            backgroundColor = UIColor.systemGray6.withAlphaComponent(0.1)
+            rightLabel.backgroundColor = UIColor.clear
         case .right:
             rightLabel.text = diff.rightLine
             rightLabel.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1)
+            backgroundColor = UIColor.systemGray.withAlphaComponent(0.1)
+            leftLabel.backgroundColor = UIColor.clear
+
         case .notChanged:
             rightLabel.text = diff.leftLine
             leftLabel.text = diff.rightLine
@@ -43,5 +49,6 @@ class DiffTableViewCell: UITableViewCell {
         backgroundColor = UIColor.white
         leftLabel.text = ""
         rightLabel.text = ""
+        rightLabel.removeLeftBorder()
     }
 }

@@ -52,7 +52,10 @@ class DiffViewModel {
             }
             
             if line.contains("diff --git") {
-                let diffModel = DiffModel(leftLine: line, rightLine: "", lineType: .fileName)
+                let removeDiff = line.replacingOccurrences(of: "diff --git", with: "")
+                let removeA = removeDiff.replacingOccurrences(of: "a/", with: "")
+                let replaceB = removeA.replacingOccurrences(of: "b/", with: "-> ")
+                let diffModel = DiffModel(leftLine: replaceB, rightLine: "", lineType: .fileName)
                 diffModels.append(diffModel)
             }
             
