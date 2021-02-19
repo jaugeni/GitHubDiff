@@ -38,7 +38,7 @@ class DiffViewModel {
     
     private func getModel(from stringData: String) -> [DiffModel] {
         var diffModels = [DiffModel]()
-        var lastposition = ""
+
         let lines = stringData.components(separatedBy: "\n")
         for line in lines {
             
