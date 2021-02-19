@@ -109,26 +109,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g47-dn-aD4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I23-12-9xu">
                                 <rect key="frame" x="44" y="44" width="808" height="349"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiffTableViewCell" id="8Mm-S0-OXJ" customClass="DiffTableViewCell" customModule="GitHubDiff" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="808" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Mm-S0-OXJ" id="z7Q-6n-fID">
+                                            <rect key="frame" x="0.0" y="0.0" width="808" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7nz-St-7jD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="808" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rll-xY-70N" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="22" width="404" height="0.0"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="topinsert">
+                                                                    <integer key="value" value="20"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkK-ON-Few" customClass="DiffLabel" customModule="GitHubDiff" customModuleProvider="target">
+                                                            <rect key="frame" x="404" y="22" width="404" height="0.0"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="7nz-St-7jD" secondAttribute="bottom" id="SEr-of-4BA"/>
+                                                <constraint firstItem="7nz-St-7jD" firstAttribute="leading" secondItem="z7Q-6n-fID" secondAttribute="leading" id="SXX-am-z4c"/>
+                                                <constraint firstItem="7nz-St-7jD" firstAttribute="top" secondItem="z7Q-6n-fID" secondAttribute="top" id="ljF-iJ-9eW"/>
+                                                <constraint firstAttribute="trailing" secondItem="7nz-St-7jD" secondAttribute="trailing" id="uLs-BO-zw3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="leftLabel" destination="Rll-xY-70N" id="1Sf-xz-yBj"/>
+                                            <outlet property="rightLabel" destination="CkK-ON-Few" id="E26-bg-TfT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ns6-bq-WpI" id="Y8G-QI-JFO"/>
+                                    <outlet property="delegate" destination="Ns6-bq-WpI" id="PRd-Uw-5jy"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qyL-q9-dnk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qyL-q9-dnk" firstAttribute="bottom" secondItem="g47-dn-aD4" secondAttribute="bottom" id="4Iv-Hx-WO3"/>
-                            <constraint firstItem="qyL-q9-dnk" firstAttribute="trailing" secondItem="g47-dn-aD4" secondAttribute="trailing" id="Hd1-h2-7C7"/>
-                            <constraint firstItem="g47-dn-aD4" firstAttribute="leading" secondItem="qyL-q9-dnk" secondAttribute="leading" id="Syg-ly-NvU"/>
-                            <constraint firstItem="g47-dn-aD4" firstAttribute="top" secondItem="qyL-q9-dnk" secondAttribute="top" id="VlB-8P-d8W"/>
+                            <constraint firstItem="qyL-q9-dnk" firstAttribute="bottom" secondItem="I23-12-9xu" secondAttribute="bottom" id="HQI-C1-vCm"/>
+                            <constraint firstItem="qyL-q9-dnk" firstAttribute="trailing" secondItem="I23-12-9xu" secondAttribute="trailing" id="R9i-Fn-rQp"/>
+                            <constraint firstItem="I23-12-9xu" firstAttribute="top" secondItem="qyL-q9-dnk" secondAttribute="top" id="gUa-m5-Nbj"/>
+                            <constraint firstItem="I23-12-9xu" firstAttribute="leading" secondItem="qyL-q9-dnk" secondAttribute="leading" id="uW4-Sf-Tws"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4lB-EW-E2U"/>
                     <connections>
-                        <outlet property="diffTextView" destination="g47-dn-aD4" id="ohJ-qh-NNk"/>
+                        <outlet property="diffTableView" destination="I23-12-9xu" id="k3L-BU-vfU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYF-PJ-xle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -137,9 +181,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

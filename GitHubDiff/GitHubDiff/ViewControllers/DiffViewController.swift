@@ -9,19 +9,36 @@ import UIKit
 
 class DiffViewController: UIViewController {
 
-    @IBOutlet weak var diffTextView: UITextView!
+    @IBOutlet weak var diffTableView: UITableView!
     
-    var prModel: PullRequestModel?
+    enum Section: CaseIterable {
+        case main
+    }
+    
+    private var dataSource: UITableViewDiffableDataSource<Section, DiffModel>?
     
     private var diffViewModel: DiffViewModel?
     
+    var prModel: PullRequestModel?
+    
+    var refresh: UIRefreshControl {
+        let ref = UIRefreshControl()
+        ref.addTarget(self, action: #selector(handleRefreshe), for: .valueChanged)
+        return ref
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpDataSource()
         rotateToLandsScapeDevice()
         updateTitle()
         diffViewModel = DiffViewModel(prModel)
         diffViewModel?.delegate = self
         navigationController?.hidesBarsOnSwipe = true
+        diffTableView.refreshControl = refresh
+        diffTableView.refreshControl?.beginRefreshing()
+        let topInset: CGFloat = 10
+        diffTableView.contentInset.top = topInset
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -36,13 +53,33 @@ class DiffViewController: UIViewController {
             title = "Pull Requst"
         }
     }
+    
+    @objc private func handleRefreshe() {
+        diffViewModel?.getDiff()
+    }
+    
+    private func setUpDataSource() {
+        dataSource = UITableViewDiffableDataSource<Section, DiffModel> (tableView: diffTableView) { (tableView, indexPath, diff) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DiffTableViewCell.self), for: indexPath) as? DiffTableViewCell
+            cell?.set(with: diff)
+            return cell
+        }
+    }
+    
+    private func createSnapshot(from diff: [DiffModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, DiffModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(diff)
+        dataSource?.apply(snapshot, animatingDifferences: true)
+    }
 }
 
 extension DiffViewController: DiffViewModelProtocol {
     
-    func update(with diff: String) {
+    func update(with diff: [DiffModel]) {
+        self.createSnapshot(from: diff)
         DispatchQueue.main.async {
-            self.diffTextView.text = diff
+            self.diffTableView.refreshControl?.endRefreshing()
         }
     }
     

@@ -56,7 +56,7 @@ class PullRequestListVC: UIViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, PullRequestModel>()
         snapshot.appendSections([.open])
         snapshot.appendItems(prs)
-        dataSource?.apply(snapshot,animatingDifferences: true)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
