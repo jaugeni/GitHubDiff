@@ -37,9 +37,11 @@ class DiffViewModel {
         
         var diffModels = [DiffModel]()
         
-        let diffPerFiles = stringData.components(separatedBy: "diff --git")
+        let diffPerFiles = stringData.components(separatedBy: "diff --git a/")
         for diffPerFile in diffPerFiles {
-            
+            if diffPerFile == "" {
+                continue
+            }
             let linkedlist = getLinkedList(from: diffPerFile)
             let model = getModel(from: linkedlist)
             diffModels.append(contentsOf: model)
@@ -53,8 +55,13 @@ class DiffViewModel {
         let linkedDiff = LinkedList()
         var counts = (0, 0)
         
-        let lines = string.components(separatedBy: "\n")
-        for line in lines {
+        var diffPerLocation = string.components(separatedBy: "\n")
+        let diffNode = DiffNode(headerLine: modifydiffGit(with: diffPerLocation[0]), leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .fileName)
+        linkedDiff.append(node: diffNode)
+        
+        diffPerLocation.remove(at: 0)
+    
+        for line in diffPerLocation {
             
             if line.contains("+++ ") || line.contains("--- ") {
                 continue
@@ -63,14 +70,8 @@ class DiffViewModel {
             if line.contains("@@") {
                 counts = handleCount(with: line)
                 
-                let doffNode = DiffNode(headerLine: line, leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .position)
-                linkedDiff.append(node: doffNode)
-                continue
-            }
-            
-            if line.contains("diff --git") {
-                let doffNode = DiffNode(headerLine: modifydiffGit(with: line), leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .fileName)
-                linkedDiff.append(node: doffNode)
+                let diffNode = DiffNode(headerLine: line, leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .position)
+                linkedDiff.append(node: diffNode)
                 continue
             }
             
@@ -79,8 +80,8 @@ class DiffViewModel {
                     emptyRight.rightCount = String(counts.1)
                     emptyRight.rightLine = line
                 } else {
-                    let doffNode = DiffNode(headerLine: nil, leftLine: nil, leftCount: nil, rightLine: line, rightCount: " \(counts.1) ", lineType: .right)
-                    linkedDiff.append(node: doffNode)
+                    let diffNode = DiffNode(headerLine: nil, leftLine: nil, leftCount: nil, rightLine: line, rightCount: " \(counts.1) ", lineType: .right)
+                    linkedDiff.append(node: diffNode)
                 }
                 counts.1 += 1
                 continue
@@ -91,16 +92,16 @@ class DiffViewModel {
                     emptyLeft.leftCount = String(counts.0)
                     emptyLeft.leftLine = line
                 } else {
-                    let doffNode = DiffNode(headerLine: nil, leftLine: line, leftCount: " \(counts.0) ", rightLine: nil, rightCount: nil, lineType: .left)
-                    linkedDiff.append(node: doffNode)
+                    let diffNode = DiffNode(headerLine: nil, leftLine: line, leftCount: " \(counts.0) ", rightLine: nil, rightCount: nil, lineType: .left)
+                    linkedDiff.append(node: diffNode)
                 }
                 counts.0 += 1
                 continue
             }
             
             if line.prefix(1) == " " {
-                let doffNode = DiffNode(headerLine: nil, leftLine: line, leftCount: " \(counts.0) ", rightLine: line, rightCount: " \(counts.1) ", lineType: .notChanged)
-                linkedDiff.append(node: doffNode)
+                let diffNode = DiffNode(headerLine: nil, leftLine: line, leftCount: " \(counts.0) ", rightLine: line, rightCount: " \(counts.1) ", lineType: .notChanged)
+                linkedDiff.append(node: diffNode)
                 counts.0 += 1
                 counts.1 += 1
                 continue
@@ -126,9 +127,8 @@ class DiffViewModel {
     }
     
     private func modifydiffGit(with line: String) -> String {
-        let removeDiff = line.replacingOccurrences(of: "diff --git ", with: "")
-        let removeA = removeDiff.replacingOccurrences(of: "a/", with: "")
-        let replaceB = removeA.replacingOccurrences(of: "b/", with: "-> ")
+        
+        let replaceB = line.replacingOccurrences(of: "b/", with: "-> ")
         let compareLines = replaceB.components(separatedBy: " -> ")
         
         if compareLines[0] == compareLines[1] {

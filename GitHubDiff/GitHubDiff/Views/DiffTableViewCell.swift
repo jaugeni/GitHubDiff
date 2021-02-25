@@ -18,7 +18,7 @@ class DiffTableViewCell: UITableViewCell {
         static let lightGreen =  UIColor.systemGreen.withAlphaComponent(0.1)
         static let white = UIColor.systemGray.withAlphaComponent(0.1)
     }
-
+    
     @IBOutlet weak var leftLabel: DiffLabel!
     @IBOutlet weak var leftCountLabel: DiffLabel!
     @IBOutlet weak var rightLabel: DiffLabel!
@@ -66,9 +66,7 @@ class DiffTableViewCell: UITableViewCell {
             leftLabel.backgroundColor = .clear
             leftCountLabel.backgroundColor = .clear
             backgroundColor = Constant.white
-        }
-        
-        if diff.rightLine == nil {
+        } else {
             rightLabel.backgroundColor = .clear
             rightCountLabel.backgroundColor = .clear
             backgroundColor = Constant.white
@@ -76,7 +74,6 @@ class DiffTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        
         label(isHidden: false)
         rightLabel.backgroundColor = .white
         leftLabel.backgroundColor = .white
@@ -85,7 +82,7 @@ class DiffTableViewCell: UITableViewCell {
         backgroundColor = UIColor.white
         leftLabel.text = ""
         leftCountLabel.text = ""
-        leftLabel.text = ""
+        rightLabel.text = ""
         rightCountLabel.text = ""
     }
     
