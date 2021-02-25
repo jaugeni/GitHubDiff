@@ -28,6 +28,8 @@
 		A3684D3125DF5D3500B1B979 /* DiffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D3025DF5D3500B1B979 /* DiffModel.swift */; };
 		A3684D6525E0188100B1B979 /* DiffLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D6425E0188100B1B979 /* DiffLinkedList.swift */; };
 		A3684D7025E06F4A00B1B979 /* DiffLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3684D6F25E06F4A00B1B979 /* DiffLabel.swift */; };
+		A3CC8A2A25E807E20029CA97 /* UIViewController+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC8A2925E807E20029CA97 /* UIViewController+Refresh.swift */; };
+		A3CC8A2F25E808080029CA97 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC8A2E25E808080029CA97 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		A3684D3025DF5D3500B1B979 /* DiffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffModel.swift; sourceTree = "<group>"; };
 		A3684D6425E0188100B1B979 /* DiffLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffLinkedList.swift; sourceTree = "<group>"; };
 		A3684D6F25E06F4A00B1B979 /* DiffLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffLabel.swift; sourceTree = "<group>"; };
+		A3CC8A2925E807E20029CA97 /* UIViewController+Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Refresh.swift"; sourceTree = "<group>"; };
+		A3CC8A2E25E808080029CA97 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,7 +218,6 @@
 		A351460825DDBF66004974F9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A3684D6F25E06F4A00B1B979 /* DiffLabel.swift */,
 				A351460925DDBF93004974F9 /* PullRequestListViewModel.swift */,
 				A3684D2125DF40FE00B1B979 /* DiffViewModel.swift */,
 			);
@@ -224,6 +227,7 @@
 		A351461125DDC314004974F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3684D6F25E06F4A00B1B979 /* DiffLabel.swift */,
 				A351461225DDC349004974F9 /* PullRequestTableViewCell.swift */,
 				A3684D2B25DF575E00B1B979 /* DiffTableViewCell.swift */,
 			);
@@ -242,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				A351463325DDE2DA004974F9 /* GitErrors.swift */,
+				A3CC8A2E25E808080029CA97 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 			children = (
 				A351464825DE21CC004974F9 /* UIViewController+Alert.swift */,
 				A3684D2625DF49A100B1B979 /* UIViewController+DeviceRotation.swift */,
+				A3CC8A2925E807E20029CA97 /* UIViewController+Refresh.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -395,12 +401,14 @@
 				A35145B425DD75B5004974F9 /* PullRequestListVC.swift in Sources */,
 				A35145B025DD75B5004974F9 /* AppDelegate.swift in Sources */,
 				A3684D2C25DF575E00B1B979 /* DiffTableViewCell.swift in Sources */,
+				A3CC8A2A25E807E20029CA97 /* UIViewController+Refresh.swift in Sources */,
 				A351463425DDE2DA004974F9 /* GitErrors.swift in Sources */,
 				A3684D2725DF49A100B1B979 /* UIViewController+DeviceRotation.swift in Sources */,
 				A3684D2225DF40FE00B1B979 /* DiffViewModel.swift in Sources */,
 				A35145B225DD75B5004974F9 /* SceneDelegate.swift in Sources */,
 				A3684D3125DF5D3500B1B979 /* DiffModel.swift in Sources */,
 				A351462E25DDE102004974F9 /* NetworkManager.swift in Sources */,
+				A3CC8A2F25E808080029CA97 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

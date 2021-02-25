@@ -19,12 +19,6 @@ class PullRequestListVC: UIViewController {
     
     private var prViewModel: PullRequestListViewModel?
     
-    private var refresh: UIRefreshControl {
-        let ref = UIRefreshControl()
-        ref.addTarget(self, action: #selector(handleRefreshe), for: .valueChanged)
-        return ref
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "MagicalRecord"
@@ -40,7 +34,7 @@ class PullRequestListVC: UIViewController {
         navigationController?.hidesBarsOnSwipe = false
     }
     
-    @objc private func handleRefreshe() {
+    override func handleRefreshe() {
         prViewModel?.getPRLists()
     }
     
@@ -60,7 +54,7 @@ class PullRequestListVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDiffViewController" {
+        if segue.identifier == Segue.toDiffVC {
             if let diffVC = segue.destination as? DiffViewController {
                 let prModel = sender as? PullRequestModel
                 diffVC.prModel = prModel
@@ -73,7 +67,7 @@ class PullRequestListVC: UIViewController {
 extension PullRequestListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let pullRequest = dataSource?.itemIdentifier(for: indexPath) else { return }
-        performSegue(withIdentifier: "toDiffViewController", sender: pullRequest)
+        performSegue(withIdentifier: Segue.toDiffVC, sender: pullRequest)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

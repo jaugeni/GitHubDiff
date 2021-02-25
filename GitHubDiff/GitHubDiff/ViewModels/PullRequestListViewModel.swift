@@ -15,14 +15,15 @@ protocol PullRequestListProtocol: class {
 class PullRequestListViewModel {
     
     weak var delegate: PullRequestListProtocol?
+    private let network = NetworkManager.share
     
     init() {
         getPRLists()
     }
     
     func getPRLists() {
-        let networkManager = NetworkManager(url: "https://api.github.com/repos/magicalpanda/MagicalRecord/pulls?state=open")
-        networkManager.get(result: [PullRequestModel].self) { [weak self] result in
+        network.url =  "https://api.github.com/repos/magicalpanda/MagicalRecord/pulls?state=open"
+        network.get(result: [PullRequestModel].self) { [weak self] result in
             switch result {
             case .success(let prList):
                 self?.delegate?.update(with: prList)

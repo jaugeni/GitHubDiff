@@ -15,36 +15,45 @@ protocol DiffViewModelProtocol: class {
 class DiffViewModel {
     
     weak var delegate: DiffViewModelProtocol?
-
-    private var network: NetworkManager?
-
-    init(_ prModel: PullRequestModel?) {
-        network = NetworkManager(url: prModel?.diffUrl)
+    private let network = NetworkManager.share
+    
+    init(_ urlString: String?) {
+        network.url = urlString
         getDiff()
     }
     
     func getDiff(){
-        network?.getData(completed: { [weak self] result in
+        network.get(result: String.self, completed:  { [weak self] result in
             switch result {
             case .success(let diff):
-                let str = String(decoding: diff, as: UTF8.self)
-                self?.getModel(from: str)
+                self?.getModels(from: diff)
             case .failure(let error):
                 self?.delegate?.showError(with: error.rawValue)
             }
         })
     }
     
-    deinit {
-        print("DiffViewModel deinit")
+    private func getModels(from stringData: String) {
+        
+        var diffModels = [DiffModel]()
+        
+        let diffPerFiles = stringData.components(separatedBy: "diff --git")
+        for diffPerFile in diffPerFiles {
+            
+            let linkedlist = getLinkedList(from: diffPerFile)
+            let model = getModel(from: linkedlist)
+            diffModels.append(contentsOf: model)
+        }
+        
+        self.delegate?.update(with: diffModels)
     }
     
-    private func getModel(from stringData: String) {
+    private func getLinkedList(from string: String) -> LinkedList {
         
         let linkedDiff = LinkedList()
         var counts = (0, 0)
-
-        let lines = stringData.components(separatedBy: "\n")
+        
+        let lines = string.components(separatedBy: "\n")
         for line in lines {
             
             if line.contains("+++ ") || line.contains("--- ") {
@@ -56,11 +65,13 @@ class DiffViewModel {
                 
                 let doffNode = DiffNode(headerLine: line, leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .position)
                 linkedDiff.append(node: doffNode)
+                continue
             }
             
             if line.contains("diff --git") {
                 let doffNode = DiffNode(headerLine: modifydiffGit(with: line), leftLine: nil, leftCount: nil, rightLine: nil, rightCount: nil, lineType: .fileName)
                 linkedDiff.append(node: doffNode)
+                continue
             }
             
             if line.prefix(1) == "+" {
@@ -72,6 +83,7 @@ class DiffViewModel {
                     linkedDiff.append(node: doffNode)
                 }
                 counts.1 += 1
+                continue
             }
             
             if line.prefix(1) == "-" {
@@ -83,6 +95,7 @@ class DiffViewModel {
                     linkedDiff.append(node: doffNode)
                 }
                 counts.0 += 1
+                continue
             }
             
             if line.prefix(1) == " " {
@@ -90,12 +103,18 @@ class DiffViewModel {
                 linkedDiff.append(node: doffNode)
                 counts.0 += 1
                 counts.1 += 1
+                continue
             }
         }
         
+        return linkedDiff
+    }
+    
+    private func getModel(from diffPerFile: LinkedList) -> [DiffModel] {
+        
         var diffModels = [DiffModel]()
         
-        var node = linkedDiff.first
+        var node = diffPerFile.first
         while node != nil {
             let diffModel = DiffModel(leftLine: node?.leftLine, leftCount: node?.leftCount, rightLine: node?.rightLine, rightCount: node?.rightCount, header: node?.headerLine, lineType: node?.lineType ?? .fileName)
                 
@@ -103,7 +122,7 @@ class DiffViewModel {
             node = node?.next
         }
         
-        self.delegate?.update(with: diffModels)
+        return diffModels
     }
     
     private func modifydiffGit(with line: String) -> String {

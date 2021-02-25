@@ -21,18 +21,12 @@ class DiffViewController: UIViewController {
     
     var prModel: PullRequestModel?
     
-    var refresh: UIRefreshControl {
-        let ref = UIRefreshControl()
-        ref.addTarget(self, action: #selector(handleRefreshe), for: .valueChanged)
-        return ref
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDataSource()
         rotateToLandsScapeDevice()
         updateTitle()
-        diffViewModel = DiffViewModel(prModel)
+        diffViewModel = DiffViewModel(prModel?.diffUrl)
         diffViewModel?.delegate = self
         navigationController?.hidesBarsOnSwipe = true
         diffTableView.refreshControl = refresh
@@ -54,7 +48,7 @@ class DiffViewController: UIViewController {
         }
     }
     
-    @objc private func handleRefreshe() {
+    override func handleRefreshe() {
         diffViewModel?.getDiff()
     }
     

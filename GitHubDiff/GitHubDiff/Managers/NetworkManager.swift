@@ -9,11 +9,11 @@ import Foundation
 
 class NetworkManager {
     
-    private var url: String?
+    static var share = NetworkManager()
     
-    init(url: String?) {
-        self.url = url
-    }
+    var url: String?
+    
+    private init() { }
     
     func get<T: Decodable>(result: T.Type, completed: @escaping (Result<T, GitErrors>) -> Void) {
         
@@ -39,47 +39,25 @@ class NetworkManager {
                 completed(.failure(.ivalidData))
                 return
             }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let decoded = try decoder.decode(T.self, from: data)
-                completed(.success(decoded))
-            } catch {
-                completed(.failure(.failtoDecodeData))
-            }
+            completed(self.decode(from: data))
         }
         
         task.resume()
     }
     
-    func getData(completed: @escaping (Result<Data, GitErrors>) -> Void) {
+    private func decode<T: Decodable>(from data: Data) -> (Result<T, GitErrors>) {
         
-        guard let urlString = url, let url = URL(string: urlString) else {
-            completed(.failure(.invalidUrl))
-            return
+        if let str = String(decoding: data, as: UTF8.self) as? T {
+            return .success(str)
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            if let error = error {
-                completed(.failure(.serverError))
-                print("Debug ERROR: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completed(.failure(.ivalidData))
-                return
-            }
-            completed(.success(data))
+        do {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let decoded = try decoder.decode(T.self, from: data)
+            return .success(decoded)
+        } catch {
+            return .failure(.failtoDecodeData)
         }
-        
-        task.resume()
     }
 }

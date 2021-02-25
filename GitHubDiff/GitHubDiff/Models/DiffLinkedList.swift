@@ -31,15 +31,15 @@ class LinkedList {
     
     private var head: DiffNode?
     
-    public var isEmpty: Bool {
+    var isEmpty: Bool {
         return head == nil
     }
     
-    public var first: DiffNode? {
+    var first: DiffNode? {
         return head
     }
     
-    public var last: DiffNode? {
+    var last: DiffNode? {
         guard var node = head else {
             return nil
         }
